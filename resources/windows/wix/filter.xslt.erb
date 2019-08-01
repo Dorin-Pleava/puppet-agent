@@ -20,14 +20,11 @@
   <!--   SourceDir/Program64FilesFolder/Puppet/puppet/bin/ruby.exe -->
   <%- service_files = Array.new -%>
   <%- get_services.each do |service| -%>
-
     <%- service_files << service.service_file.sub("SourceDir\\#{self.settings[:base_dir]}\\#{self.settings[:company_id]}\\#{self.settings[:product_id]}", "$(var.AppSourcePath)") -%>
   <%- end -%>
   <%- service_files.uniq.each do |service_file| -%>
     <xsl:template match="wix:Component[wix:File[@Source='<%= service_file %>']]" />
   <%- end -%>
-
   <!-- Above directly copies Vanagons default filter.xslt.erb as Vanagon does not provide a
        way to perform additional transforms against heat harvested file list -->
-
 </xsl:stylesheet>
